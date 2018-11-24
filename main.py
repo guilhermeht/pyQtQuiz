@@ -6,7 +6,7 @@ import time
 import sys
 
 class Window(QWidget):
-	windowHeight = 700
+	windowHeight = 500
 	windowsWidth = 600
 	vPerguntas = []
 	vRespostas = []
@@ -49,44 +49,52 @@ class Window(QWidget):
 		
 		# Question
 		self.question = QLineEdit(self)
-		self.question.move(self.windowsWidth/2-250, 20)
+		self.question.move(self.windowsWidth/2-250, 35)
 		self.question.resize(475,200)
-		self.question.setText(self.vPerguntas[self.numeroPergunta])
+		self.question.setText("")
 
 		# Creating Answer Buttons
 		# Button1
-		# print(self.button1_index)
-		self.button1 = QPushButton(self.vRespostas[ self.button1_index ], self)
+		self.button1 = QPushButton("", self)
 		self.button1.resize(200,75)
 		self.button1.move(50,250)
 		self.button1.clicked.connect(self.botao1_clicado)
+		self.button1.setEnabled(False)
 
 		# Button2
-		# print(self.button2_index)
-		self.button2 = QPushButton(self.vRespostas[ self.button2_index ], self)
+		self.button2 = QPushButton("", self)
 		self.button2.resize(200, 75)
 		self.button2.move(325,250)
 		self.button2.clicked.connect(self.botao2_clicado)
+		self.button2.setEnabled(False)
 
 
 		# Button3
-		# print(self.button3_index)
-		self.button3 = QPushButton(self.vRespostas[ self.button3_index ], self)
+		self.button3 = QPushButton("", self)
 		self.button3.resize(200, 75)
 		self.button3.move(50,350)
 		self.button3.clicked.connect(self.botao3_clicado)
+		self.button3.setEnabled(False)
+
 
 		# Button4
-		# print(self.button4_index)
-		self.button4 = QPushButton(self.vRespostas[ self.button4_index ], self)
+		self.button4 = QPushButton("", self)
 		self.button4.resize(200, 75)
 		self.button4.move(325,350)
 		self.button4.clicked.connect(self.botao4_clicado)
+		self.button4.setEnabled(False)
+
 
 		# Timer
 		self.timer = QProgressBar(self)
 		#                      x, y, width, heigh
-		self.timer.setGeometry(50, 475, 475, 20)
+		self.timer.setGeometry(50, 450, 475, 20)
+
+		# Start Button
+		self.startButton = QPushButton("Começar", self)
+		self.startButton.resize(475,25)
+		self.startButton.move(50, 5)
+		self.startButton.clicked.connect(self.start_game)
 
 		# Criacao da Janela
 		self.resize(self.windowsWidth, self.windowHeight)
@@ -94,6 +102,20 @@ class Window(QWidget):
 		self.setWindowTitle("Quiz Arquitetura")
 		self.show()
 
+	def start_game(self):
+		self.button1.setEnabled(True)
+		self.button2.setEnabled(True)
+		self.button3.setEnabled(True)
+		self.button4.setEnabled(True)
+		self.startButton.setEnabled(False)
+
+		self.question.setText(self.vPerguntas[self.numeroPergunta])
+		self.button1.setText(self.vRespostas[ self.button1_index ])
+		self.button2.setText(self.vRespostas[ self.button2_index ])
+		self.button3.setText(self.vRespostas[ self.button3_index ])
+		self.button4.setText(self.vRespostas[ self.button4_index ])
+
+		app.processEvents() # Atualiza a tela com os novos textos
 
 	def botao1_clicado(self):
 		self.botao_clicado = self.button1_index
