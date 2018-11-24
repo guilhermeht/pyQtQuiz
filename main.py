@@ -1,6 +1,8 @@
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QFont
 from PyQt5.QtCore import *
+from random import randint
+import time
 import sys
 
 class Window(QWidget):
@@ -8,6 +10,8 @@ class Window(QWidget):
 	windowsWidth = 600
 	vPerguntas = []
 	vRespostas = []
+	totalPerguntas = 0
+	indiceRespostas = [0,1,2,3]
 
 	def __init__(self):
 		super().__init__()
@@ -26,6 +30,7 @@ class Window(QWidget):
 		except:
 			print("Could not open questions file")
 			sys.exit()
+		self.totalPerguntas = len(self.vPerguntas)
 		self.startUI()
 
 	def startUI(self):
@@ -40,29 +45,37 @@ class Window(QWidget):
 		
 		# Creating Answer Buttons
 		# Button1
-		self.button1 = QPushButton(self.vRespostas[0], self)
+		self.button1_index = self.indiceRespostas.pop(randint(0,len(self.indiceRespostas)-1))
+		print(self.button1_index)
+		self.button1 = QPushButton(self.vRespostas[ self.button1_index ], self)
 		self.button1.resize(200,75)
 		self.button1.move(50,250)
-		self.button1.clicked.connect(self.botao_clicado)
+		self.button1.clicked.connect(self.botao1_clicado)
 
 		# Button2
-		self.button2 = QPushButton(self.vRespostas[1], self)
+		self.button2_index = self.indiceRespostas.pop(randint(0,len(self.indiceRespostas)-1)) 		
+		print(self.button2_index)
+		self.button2 = QPushButton(self.vRespostas[ self.button2_index ], self)
 		self.button2.resize(200, 75)
 		self.button2.move(325,250)
-		self.button2.clicked.connect(self.botao_clicado)
+		self.button2.clicked.connect(self.botao2_clicado)
 
 
 		# Button3
-		self.button3 = QPushButton(self.vRespostas[2], self)
+		self.button3_index = self.indiceRespostas.pop(randint(0,len(self.indiceRespostas)-1))
+		print(self.button3_index)
+		self.button3 = QPushButton(self.vRespostas[ self.button3_index ], self)
 		self.button3.resize(200, 75)
 		self.button3.move(50,350)
-		self.button3.clicked.connect(self.botao_clicado)
+		self.button3.clicked.connect(self.botao3_clicado)
 
 		# Button4
-		self.button4 = QPushButton(self.vRespostas[3], self)
+		self.button4_index = self.indiceRespostas.pop(randint(0,len(self.indiceRespostas)-1))
+		print(self.button4_index)
+		self.button4 = QPushButton(self.vRespostas[ self.button4_index ], self)
 		self.button4.resize(200, 75)
 		self.button4.move(325,350)
-		self.button4.clicked.connect(self.botao_clicado)
+		self.button4.clicked.connect(self.botao4_clicado)
 
 		# Timer
 		self.timer = QProgressBar(self)
@@ -75,14 +88,35 @@ class Window(QWidget):
 		self.setWindowTitle("Quiz Arquitetura")
 		self.show()
 
-	def botao_clicado(self):
-		completed = 0
-		value = 0.0
-		while completed != 1:
-			self.timer.setValue(value)
-			value += 0.000001
-			if value >= 101:
-				completed = 1
+
+	def botao1_clicado(self):
+		self.botao_clicado = self.button1_index
+		self.checar_resposta()
+
+	def botao2_clicado(self):
+		self.botao_clicado = self.button2_index
+		self.checar_resposta()
+
+	def botao3_clicado(self):
+		self.botao_clicado = self.button3_index
+		self.checar_resposta()
+
+	def botao4_clicado(self):
+		self.botao_clicado = self.button4_index
+		self.checar_resposta()
+
+	def checar_resposta(self):
+		print("Botao clicado "+str(self.botao_clicado))
+		if(self.botao_clicado == 0):
+			self.question.setText("RESPOSTA CORRETA!")
+		else:
+			self.question.setText("RESPOSTA ERRADA! A resposta correta eh: "+self.vRespostas[0])
+		app.processEvents() # Atualiza a tela com os novos textos
+		time.sleep(2.2)
+		self.mudar_pergunta()
+
+	def mudar_pergunta(self):
+		self.question.setText("Pergunta2")
 
 if __name__ == "__main__":
 	app = QApplication(sys.argv)
