@@ -34,18 +34,22 @@ class Window(QWidget):
 		self.startUI()
 
 	def startUI(self):
-		# QToolTip.setFont(QFont('Cursive',10))
-		# self.setToolTip('teste de widget')
+		# Getting Questions and Answer Index from random number
+		self.numeroPergunta = randint(0,self.totalPerguntas-1)
 
+		self.button1_index = (self.numeroPergunta*4) + self.indiceRespostas.pop(randint(0,len(self.indiceRespostas)-1))
+		self.button2_index = (self.numeroPergunta*4) + self.indiceRespostas.pop(randint(0,len(self.indiceRespostas)-1)) 		
+		self.button3_index = (self.numeroPergunta*4) + self.indiceRespostas.pop(randint(0,len(self.indiceRespostas)-1))
+		self.button4_index = (self.numeroPergunta*4) + self.indiceRespostas.pop(randint(0,len(self.indiceRespostas)-1))
+		
 		# Question
 		self.question = QLineEdit(self)
 		self.question.move(self.windowsWidth/2-250, 20)
 		self.question.resize(475,200)
-		self.question.setText(self.vPerguntas[0])
-		
+		self.question.setText(self.vPerguntas[self.numeroPergunta])
+
 		# Creating Answer Buttons
 		# Button1
-		self.button1_index = self.indiceRespostas.pop(randint(0,len(self.indiceRespostas)-1))
 		print(self.button1_index)
 		self.button1 = QPushButton(self.vRespostas[ self.button1_index ], self)
 		self.button1.resize(200,75)
@@ -53,7 +57,6 @@ class Window(QWidget):
 		self.button1.clicked.connect(self.botao1_clicado)
 
 		# Button2
-		self.button2_index = self.indiceRespostas.pop(randint(0,len(self.indiceRespostas)-1)) 		
 		print(self.button2_index)
 		self.button2 = QPushButton(self.vRespostas[ self.button2_index ], self)
 		self.button2.resize(200, 75)
@@ -62,7 +65,6 @@ class Window(QWidget):
 
 
 		# Button3
-		self.button3_index = self.indiceRespostas.pop(randint(0,len(self.indiceRespostas)-1))
 		print(self.button3_index)
 		self.button3 = QPushButton(self.vRespostas[ self.button3_index ], self)
 		self.button3.resize(200, 75)
@@ -70,7 +72,6 @@ class Window(QWidget):
 		self.button3.clicked.connect(self.botao3_clicado)
 
 		# Button4
-		self.button4_index = self.indiceRespostas.pop(randint(0,len(self.indiceRespostas)-1))
 		print(self.button4_index)
 		self.button4 = QPushButton(self.vRespostas[ self.button4_index ], self)
 		self.button4.resize(200, 75)
@@ -107,10 +108,10 @@ class Window(QWidget):
 
 	def checar_resposta(self):
 		print("Botao clicado "+str(self.botao_clicado))
-		if(self.botao_clicado == 0):
+		if((self.numeroPergunta*4)-self.botao_clicado == 0):
 			self.question.setText("RESPOSTA CORRETA!")
 		else:
-			self.question.setText("RESPOSTA ERRADA! A resposta correta eh: "+self.vRespostas[0])
+			self.question.setText("RESPOSTA ERRADA! A resposta correta eh: "+self.vRespostas[self.numeroPergunta*4])
 		app.processEvents() # Atualiza a tela com os novos textos
 		time.sleep(2.2)
 		self.mudar_pergunta()
