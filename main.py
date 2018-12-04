@@ -14,6 +14,8 @@ class Window(QWidget):
 	indiceRespostas = [0,1,2,3]
 	perguntasRestantes = []
 	pontos = 0
+	acertos = 0
+	erros = 0
 
 	def __init__(self):
 		super().__init__()
@@ -52,7 +54,7 @@ class Window(QWidget):
 		self.question.setReadOnly(True)
 		self.question.move(self.windowsWidth/2-250, 35)
 		self.question.resize(475,200)
-		self.question.setText("Aperte o botão acima para começar!")
+		self.question.setText("<center>Aperte o botão acima para começar!</center>")
 
 		# Creating Answer Buttons
 		# Button1
@@ -131,10 +133,12 @@ class Window(QWidget):
 
 	def checar_resposta(self):
 		if((self.numeroPergunta*4)-self.botao_clicado == 0):
-			self.question.setText("RESPOSTA CORRETA!")
+			self.question.setText('<center><span style= "font-weight:bold;color:#00bf26;">RESPOSTA CORRETA!</span></center>')
 			self.pontos += 5
+			self.acertos += 1
 		else:
-			self.question.setText("RESPOSTA ERRADA! A resposta correta eh: "+self.vRespostas[self.numeroPergunta*4])
+			self.erros += 1
+			self.question.setText('<center><span style= "font-weight:bold;color:#bf0000;">RESPOSTA ERRADA!</span></center><br> A resposta correta eh: '+self.vRespostas[self.numeroPergunta*4])
 		self.button1.setEnabled(False)
 		self.button2.setEnabled(False)
 		self.button3.setEnabled(False)
@@ -165,7 +169,7 @@ class Window(QWidget):
 			self.button4.setText(self.vRespostas[ self.button4_index ])
 
 		except:
-			self.question.setText("Fim de Jogo! Pontos marcados:" + str(self.pontos))
+			self.question.setText('<center><span style= "font-weight:bold">Fim de Jogo!</span></center><br>' + str(self.pontos) + ' Pontos<br><span style= "font-weight:bold">Perguntas Corretas: </span>'+str(self.acertos)+'<br><span style= "font-weight:bold">Perguntas Erradas: </span>'+str(self.erros))
 			self.button1.setEnabled(False)
 			self.button2.setEnabled(False)
 			self.button3.setEnabled(False)
