@@ -1,0 +1,20 @@
+De acordo com as novas leis do universo segundo a marcha da lei de N?
+MIMD
+SIMD
+MISD
+SISD
+Qual sua idade ?
+1
+2
+3
+4
+Qual a ordem correta ?
+IF - ID - MEM - EX - WB
+IF - ID - EX - MEM -WB
+IF - IF - MEM - EX - WB
+ID - IF - EX - MEM - WB
+Utilizando uma arquitetura MIPS com o pipeline. Se uma instrução começa no ciclo 1 e termina no ciclo 5, a proxima instrução começara em que ciclo ?
+Ciclo 2
+Ciclo 6
+Ciclo 5
+Ciclo 3
