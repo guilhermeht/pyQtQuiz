@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import *
-from PyQt5.QtGui import QFont
+from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from random import randint
 import time
@@ -94,6 +94,7 @@ class Window(QWidget):
 		# Criacao da Janela
 		self.resize(self.windowsWidth, self.windowHeight)
 		self.move(300, 300)
+		self.setWindowIcon(QIcon("logo.png"))
 		self.setWindowTitle("Quiz Arquitetura")
 		self.show()
 
