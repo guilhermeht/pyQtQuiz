@@ -6,7 +6,7 @@ import time
 import sys
 
 class Window(QWidget):
-	windowHeight = 500
+	windowHeight = 470
 	windowsWidth = 600
 	vPerguntas = []
 	vRespostas = []
@@ -49,6 +49,7 @@ class Window(QWidget):
 		
 		# Question
 		self.question = QTextEdit(self)
+		self.question.setReadOnly(True)
 		self.question.move(self.windowsWidth/2-250, 35)
 		self.question.resize(475,200)
 		self.question.setText("Aperte o botão acima para começar!")
@@ -83,12 +84,6 @@ class Window(QWidget):
 		self.button4.move(50,400)
 		self.button4.clicked.connect(self.botao4_clicado)
 		self.button4.setEnabled(False)
-
-
-		# Timer
-		self.timer = QProgressBar(self)
-		#                      x, y, width, heigh
-		self.timer.setGeometry(50, 460, 475, 20)
 
 		# Start Button
 		self.startButton = QPushButton("Começar", self)
