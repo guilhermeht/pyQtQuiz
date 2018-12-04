@@ -50,11 +50,12 @@ class Window(QWidget):
 		self.button4_index = (self.numeroPergunta*4) + self.indiceRespostas.pop(randint(0,len(self.indiceRespostas)-1))
 		
 		# Question
+		welcomeText = '<center><span style= "font-weight:bold;">Quiz Arquitetura</span><br>- Há somente uma resposta correta<br>- Cada acerto vale 5 pontos<br>- Erros não contabilizam<br><br><span style= "font-weight:bold; color: #000666">Aperte o botão acima para começar !</span></center><br><br><br><br>Perguntas Carregadas: '+str(self.totalPerguntas) 
 		self.question = QTextEdit(self)
 		self.question.setReadOnly(True)
 		self.question.move(self.windowsWidth/2-250, 35)
 		self.question.resize(475,200)
-		self.question.setText("<center>Aperte o botão acima para começar!</center>")
+		self.question.setText(welcomeText)
 
 		# Creating Answer Buttons
 		# Button1
@@ -88,7 +89,7 @@ class Window(QWidget):
 		self.button4.setEnabled(False)
 
 		# Start Button
-		self.startButton = QPushButton("Começar", self)
+		self.startButton = QPushButton('Começar', self)
 		self.startButton.resize(475,25)
 		self.startButton.move(50, 5)
 		self.startButton.clicked.connect(self.start_game)
@@ -138,7 +139,7 @@ class Window(QWidget):
 			self.acertos += 1
 		else:
 			self.erros += 1
-			self.question.setText('<center><span style= "font-weight:bold;color:#bf0000;">RESPOSTA ERRADA!</span></center><br> A resposta correta eh: '+self.vRespostas[self.numeroPergunta*4])
+			self.question.setText('<center><span style= "font-weight:bold;color:#bf0000;">RESPOSTA ERRADA!</span></center><br> A resposta correta é: '+self.vRespostas[self.numeroPergunta*4])
 		self.button1.setEnabled(False)
 		self.button2.setEnabled(False)
 		self.button3.setEnabled(False)
