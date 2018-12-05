@@ -108,7 +108,7 @@ class Window(QWidget):
 		self.button4.setEnabled(True)
 		self.startButton.setEnabled(False)
 
-		self.question.setText(self.vPerguntas[self.numeroPergunta])
+		self.question.setText(str((self.acertos+self.erros)+1)+") "+  self.vPerguntas[self.numeroPergunta])
 
 		self.button1.setToolTip(self.vRespostas[ self.button1_index ])		
 		self.button1.setText(self.vRespostas[ self.button1_index ])
@@ -171,7 +171,7 @@ class Window(QWidget):
 			self.button4_index = (self.numeroPergunta*4) + self.indiceRespostas.pop(randint(0,len(self.indiceRespostas)-1))
 
 			#setting new questions and new answers
-			self.question.setText(self.vPerguntas[self.numeroPergunta])
+			self.question.setText(str((self.acertos+self.erros)+1)+") "+self.vPerguntas[self.numeroPergunta])
 			self.button1.setText(self.vRespostas[ self.button1_index ])
 			self.button2.setText(self.vRespostas[ self.button2_index ])
 			self.button3.setText(self.vRespostas[ self.button3_index ])

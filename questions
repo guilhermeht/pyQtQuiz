@@ -1,20 +1,50 @@
-De acordo com as novas leis do universo segundo a marcha da lei de N?
-MIMD
+Qual das seguintes características torna arquiteturas CISC menos viaveis para implementação do pipeline?
+Taxa média de instruções por ciclo abaixo de 1
+Menor número de modos de endereçamento
+Ser uma tecnologia mais nova e portanto não ter suporte adequado
+Apenas intruções de load/store referenciarem operandos na memória
+Considerando a arquitetura MIPS qual das características torna mais viável a implementação do pipeline no design monociclo em detrimento do multiciclo?
+A presença de memórias distintas. Uma para as instruções, outra para os dados
+A arquitetura monociclo ter mais registradores do que a multiciclo
+A arquitetura multiclo ter diferentes números de ciclos de clock para a execução de difentes instruções.
+O tempo de clock de máquina da monociclo ser, geralmente, maior do que a multiciclo
+A unidade de controle é resposável por:
+Enviar sinais de controle gerados a partir da instrução buscada a fim de guiar a sua execução pelo caminho de dados
+Definir quais registradores serão usados
+Resolver dependências de dados
+Fazer o escalonamento, em tempo de execução, da intruções
+Quais registradores fazem parte do estágio ID/EX do pipeline de uma arquitetura MIPS?
+A, B, Imm, NPC, IR
+A, B, Imm, NPC, RD
+A, B, Brach Target, RD
+ALUOutput, Zero, Brach Target, RD
+Quais tipos de dependências são consideradas verdadeiras?
+RAW
+WAR
+WAW
+RAW e WAR
+A unidade de Fowarding funciona com base em:
+Criar um caminho interno entre a entrada e saída da ULA
+Criar um caminho entre a saída da memória de dados e entrada da ULA
+Evitar a parada do pipeline utilizando buffers externos
+Esperar que o elemento de dados chegue em registradores visíveis ao programador
+Qual dos códigos a seguir implementa a detecção de dependências de dados para unidade de Fowarding considerando que o valor a ser utilizado pela primeira entrada ULA no ciclo n foi calculado no ciclo n-1 (também na ULA)?
+if (EX/MEM.RegWrite and (EX/MEM.RegisterRd ≠ 0) and (EX/MEM.RegisterRd = ID/EX.RegisterRs)) ForwardA = 10
+if (EX/MEM.RegWrite and (EX/MEM.RegisterRd = 0) and (EX/MEM.RegisterRd = ID/EX.RegisterRs)) ForwardA = 10
+if (EX/MEM.RegWrite and (EX/MEM.RegisterRd ≠ 0) and (EX/MEM.RegisterRd = ID/EX.RegisterRs)) ForwardA = 00
+if (EX/MEM.RegWrite and (EX/MEM.RegisterRd ≠ 0) and (EX/MEM.RegisterRd = ID/EX.RegisterRs)) ForwardA = 01
+"if (ID/EX.MemRead and ((ID/EX.RegisterRt = IF/ID.RegisterRs) or (ID/EX.RegisterRt = IF/ID.RegisterRt)))". Esse trecho de código sugere que:
+A unidade de Fowarding não é capaz de resolver a dependência de dados em questão e o pipeline deve ser parado por um ciclo
+A dependência detectada é uma dependêcia de controle
+A dependência é de dados porém é uma antidepencia e caso a ordem de execução não for alterada não tem influência sobre o pipeline
+A dependência é de controle e uma política de previsão dinâmica de desvio deve ser empregada
+No que baseia-se a classificação de Flynn?
+Na unicidade e multiplicidade de dados e instruções
+Na quantidade de bits que formam um instrução em determinada arquitetura
+Na nível de paralelismo de uma arquitetura
+Na quantida de de modos de endereçamento de uma arquitetura
+MPP e Cluster são exemplos de arquiteturas:
+MIMD - Memória distribuída
+MIMD - Memória Compartilhada
 SIMD
-MISD
 SISD
-Qual sua idade ?
-1
-2
-3
-4
-Qual a ordem correta ?
-IF - ID - MEM - EX - WB
-IF - ID - EX - MEM -WB
-IF - IF - MEM - EX - WB
-ID - IF - EX - MEM - WB
-Utilizando uma arquitetura MIPS com o pipeline. Se uma instrução começa no ciclo 1 e termina no ciclo 5, a proxima instrução começara em que ciclo ?
-Ciclo 2
-Ciclo 6
-Ciclo 5
-Ciclo 3
