@@ -109,9 +109,17 @@ class Window(QWidget):
 		self.startButton.setEnabled(False)
 
 		self.question.setText(self.vPerguntas[self.numeroPergunta])
+
+		self.button1.setToolTip(self.vRespostas[ self.button1_index ])		
 		self.button1.setText(self.vRespostas[ self.button1_index ])
+		
+		self.button2.setToolTip(self.vRespostas[ self.button2_index ])
 		self.button2.setText(self.vRespostas[ self.button2_index ])
+
+		self.button3.setToolTip(self.vRespostas[ self.button3_index ])		
 		self.button3.setText(self.vRespostas[ self.button3_index ])
+
+		self.button4.setToolTip(self.vRespostas[ self.button4_index ])		
 		self.button4.setText(self.vRespostas[ self.button4_index ])
 
 		app.processEvents() # Atualiza a tela com os novos textos
@@ -168,9 +176,26 @@ class Window(QWidget):
 			self.button2.setText(self.vRespostas[ self.button2_index ])
 			self.button3.setText(self.vRespostas[ self.button3_index ])
 			self.button4.setText(self.vRespostas[ self.button4_index ])
+			# Setting new tooltips
+			self.button1.setToolTip(self.vRespostas[ self.button1_index ])		
+			self.button2.setToolTip(self.vRespostas[ self.button2_index ])
+			self.button3.setToolTip(self.vRespostas[ self.button3_index ])		
+			self.button4.setToolTip(self.vRespostas[ self.button4_index ])		
 
-		except:
+
+		except: # Fim de jogo
 			self.question.setText('<center><span style= "font-weight:bold">Fim de Jogo!</span></center><br>' + str(self.pontos) + ' Pontos<br><span style= "font-weight:bold">Perguntas Corretas: </span>'+str(self.acertos)+'<br><span style= "font-weight:bold">Perguntas Erradas: </span>'+str(self.erros))
+
+			self.button1.setText("")
+			self.button2.setText("")
+			self.button3.setText("")
+			self.button4.setText("")
+
+			self.button1.setToolTip("")
+			self.button2.setToolTip("")
+			self.button3.setToolTip("")
+			self.button4.setToolTip("")
+
 			self.button1.setEnabled(False)
 			self.button2.setEnabled(False)
 			self.button3.setEnabled(False)
